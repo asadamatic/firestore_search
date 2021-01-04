@@ -1,7 +1,16 @@
 library firestore_search;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:flutter/material.dart';
+
+class FireStoreSearchScaffold extends StatefulWidget {
+  @override
+  _FireStoreSearchScaffoldState createState() =>
+      _FireStoreSearchScaffoldState();
+}
+
+class _FireStoreSearchScaffoldState extends State<FireStoreSearchScaffold> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }
