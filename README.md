@@ -4,9 +4,9 @@ This package helps developers in implementation of search on Cloud FireStore. Th
 
 
 <p>
-  <img width="216px" alt="CircularFloatingSearchBarTransition" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/searchbar.gif"/>
+  <img width="216px" alt="Activated Search App BAr" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/searchbar.gif"/>
 
-  <img width="216px" alt="ExpandingFloatingSearchBarTransition" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/usersearch.gif"/>
+  <img width="216px" alt="Searching for Users in Firestore Collection" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/usersearch.gif"/>
 </p>
 
 [![Pub Version](https://img.shields.io/pub/v/firestore_search?logo=flutter&style=for-the-badge)](https://pub.dev/packages/firestore_search)
