@@ -10,13 +10,8 @@ This package helps developers in implementation of search on Cloud FireStore. Th
 </p>
 
 [![Pub Version](https://img.shields.io/pub/v/firestore_search?logo=flutter&style=for-the-badge)](https://pub.dev/packages/firestore_search)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asadamatic/firestore_search/CI?logo=github&style=for-the-badge)](https://github.com/asadamatic/firestore_search/actions)
-[![Codecov](https://img.shields.io/codecov/c/github/asadamatic/firestore_search?logo=codecov&style=for-the-badge)](https://codecov.io/gh/asadamatic/firestore_search/)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/asadamatic/firestore_search?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/asadamatic/firestore_search)
-
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asadamatic/firestore_search/pub_publish?logo=github&style=for-the-badge)
 [![GitHub](https://img.shields.io/github/license/asadamatic/firestore_search?logo=open+source+initiative&style=for-the-badge)](https://github.com/asadamatic/firestore_search/blob/master/LICENSE)
-[![OSS Lifecycle](https://img.shields.io/osslifecycle/asadamatic/firestore_search?style=for-the-badge)](#support)
-[![Gitter](https://img.shields.io/gitter/room/asadamatic/firestore_search?logo=gitter&style=for-the-badge)](https://gitter.im/firestore_search/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-FC60A8?logo=awesome-lists&style=for-the-badge)](https://github.com/Solido/awesome-flutter#widgets) -->
 
 ### Saves You from following implementations

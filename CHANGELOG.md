@@ -5,3 +5,7 @@
 ## [0.0.2] - 11-Jan-2021.
 
 * Edited the workflow name.
+
+## [0.0.3] - 11-Jan-2021.
+
+* Readme file shows Workflow status.
