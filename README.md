@@ -10,7 +10,7 @@ This package helps developers in implementation of search on Cloud FireStore. Th
 </p>
 
 [![Pub Version](https://img.shields.io/pub/v/firestore_search?logo=flutter&style=for-the-badge)](https://pub.dev/packages/firestore_search)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asadamatic/firestore_search/CI?logo=github&style=for-the-badge)](https://github.com/asadamatic/firestore_search/actions?query=workflow%3ACI)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asadamatic/firestore_search/CI?logo=github&style=for-the-badge)](https://github.com/asadamatic/firestore_search/actions)
 [![Codecov](https://img.shields.io/codecov/c/github/asadamatic/firestore_search?logo=codecov&style=for-the-badge)](https://codecov.io/gh/asadamatic/firestore_search/)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/asadamatic/firestore_search?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/asadamatic/firestore_search)
 

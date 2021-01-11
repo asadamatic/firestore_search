@@ -1,0 +1,25 @@
+name: codecov_ci
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image:  google/dart:latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: pub get
+      - name: Run tests
+        run: pub run test
+      - name: Code Coverage
+        run: pub run test_coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1.0.2
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: coverage/lcov.info
