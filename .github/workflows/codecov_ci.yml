@@ -1,27 +1,48 @@
-name: codecov_ci
-
+name: Test
 on: [push]
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: 'dev'
-      - name: Install dependencies
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1.3.2
+      - name: Install app dependencies
         run: flutter pub get
-      - name: Run tests
-        run: flutter test
-      - name: Code Coverage
+      - name: Test app
         run: flutter test --coverage
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1.0.2
+        uses: codecov/codecov-action@v1
         with:
-          token: ${{secrets.CODECOV_TOKEN}}
+          token: ${{ secrets.CODECOV_TOKEN }}
           file: coverage/lcov.info
+
+
+
+#name: codecov_ci
+#
+#on: [push]
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v1
+#      - uses: actions/checkout@v2
+#      - uses: actions/setup-java@v1
+#        with:
+#          java-version: '12.x'
+#      - uses: subosito/flutter-action@v1
+#        with:
+#          channel: 'dev'
+#      - name: Install dependencies
+#        run: flutter pub get
+#      - name: Run tests
+#        run: flutter test
+#      - name: Code Coverage
+#        run: flutter test --coverage
+#      - name: Upload coverage to Codecov
+#        uses: codecov/codecov-action@v1.0.2
+#        with:
+#          token: ${{secrets.CODECOV_TOKEN}}
+#          file: coverage/lcov.info
