@@ -10,6 +10,10 @@
 
 * Readme file shows Workflow status.
 
-## [0.0.4] - 11-Jan-2021.
+## [0.0.4] - 16-Jan-2021.
 
 * CloudFirestore package dependency is now set to teh latest version.
+
+## [0.0.5] - 16-Jan-2021.
+
+* Downgraded CloudFirestore package dependency.
