@@ -22,6 +22,6 @@
 
 * Removed a few spaces that might have caused a bug.
 
-## [0.0.7] - 16-Jan-2021.
+## [0.0.7] - 19-Jan-2021.
 
-* Fixed the package example.
+* Fixed the package example & upgraded cloud_firestore to it's latest version.

@@ -2,7 +2,7 @@
 
 This package helps developers in implementation of search on Cloud FireStore. This package comes with the implementation of widgets essential  for  performing search on a database.
 
-
+**For `cloud_firestore: ^0.14.0` use `firestore_search: ^0.0.6`**
 <p>
   <img width="216px" alt="Activated Search App BAr" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/searchbar.gif"/>
 
@@ -27,7 +27,7 @@ To use this plugin, add `firestore_search` as a
 [dependency in your pubspec.yaml file](https://pub.dev/packages/firestore_search/install).
 
 
-###Implementation:
+##Implementation:
 
 * Import `import 'package:firestore_search/firestore_search.dart';`
 
