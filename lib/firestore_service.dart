@@ -17,7 +17,7 @@ class FirestoreServicePackage<T> {
     final collectionReference = firebasefirestore.collection(collectionName);
 
     return collectionReference
-        .where('${searchBy ?? ''}', isGreaterThanOrEqualTo: query ?? '')
+        .where('$searchBy', isGreaterThanOrEqualTo: query ?? '')
         .limit(limitOfRetrievedData)
         .snapshots()
         .map(dataListFromSnapshot);
