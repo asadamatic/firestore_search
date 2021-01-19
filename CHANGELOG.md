@@ -14,10 +14,14 @@
 
 * CloudFirestore package dependency is now set to teh latest version.
 
-## [0.0.5] - 16-Jan-2021.
+## [0.0.5] - 19-Jan-2021.
 
 * Fixed a bug in firestore_service class.
 
-## [0.0.6] - 16-Jan-2021.
+## [0.0.6] - 19-Jan-2021.
 
 * Removed a few spaces that might have caused a bug.
+
+## [0.0.7] - 16-Jan-2021.
+
+* Fixed the package example.

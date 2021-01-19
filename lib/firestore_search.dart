@@ -123,7 +123,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 8.0, vertical: 0.0),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6.0),
+                    borderRadius: BorderRadius.circular(4.0),
                     color: widget?.searchBackgroundColor ??
                         Colors.blueGrey.withOpacity(.2),
                   ),

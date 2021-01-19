@@ -34,6 +34,7 @@ class _SearchFeedState extends State<SearchFeed> {
   Widget build(BuildContext context) {
     return FirestoreSearchScaffold(
       firestoreCollectionName: 'data',
+      searchBy: 'name',
       dataListFromSnapshot: DataModel().dataListFromSnapshot,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
