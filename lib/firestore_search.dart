@@ -24,7 +24,7 @@ class FirestoreSearchScaffold extends StatefulWidget {
       scaffoldBackgroundColor,
       searchBodyBackgroundColor;
 
-  final String firestoreCollectionName;
+  final String firestoreCollectionName, searchBy;
   final List Function(QuerySnapshot) dataListFromSnapshot;
   final Widget Function(BuildContext, AsyncSnapshot) builder;
   final int limitOfRetrievedData;
@@ -44,6 +44,7 @@ class FirestoreSearchScaffold extends StatefulWidget {
     /// Name of the cloud_firestore collection you
     /// want to search data from
     @required this.firestoreCollectionName,
+    @required this.searchBy,
 
     /// This function takes QuerySnapshot as an argument an returns the object of your dataMode
     /// See example of such a function here
@@ -172,6 +173,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                     child: StreamBuilder<List>(
                         stream: FirestoreServicePackage(
                                 collectionName: widget.firestoreCollectionName,
+                                searchBy: widget.searchBy ?? '',
                                 dataListFromSnapshot:
                                     widget.dataListFromSnapshot,
                                 limitOfRetrievedData:

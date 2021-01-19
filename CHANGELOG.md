@@ -16,4 +16,4 @@
 
 ## [0.0.5] - 16-Jan-2021.
 
-* Downgraded CloudFirestore package dependency.
+* Fixed a bug in firestore_service class.

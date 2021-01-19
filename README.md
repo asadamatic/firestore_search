@@ -86,6 +86,7 @@ In order to add the `FirestoreSearchScaffold` in your app, there are several att
 | `scaffoldBody` | `Widget` | `Widget` | `No` | This widget will appear in the body of Scaffold. |
 | `appBarBottom` | `PreferredSizeWidget` | `null`  | `No` | This widget will appear at the bottom of Search AppBar. |
 | `firestoreCollectionName` | `String` | `` | `Yes` | Determines the Cloud Firestore collection You want to search in. |
+| `searchBy` | `String` | `` | `Yes` | Key for the firestore_collection value you want to search by. |
 | `dataListFromSnapshot` | `List Function(QuerySnapshot)` | `null` | `Yes` | This function converts QuerySnapshot to A List of required data. |
 | `builder` | `Widget Function(BuildContext, AsyncSnapshot)` | `null` | `No` | This is the builder function of StreamBuilder used by this widget to show search results. |
 | `limitOfRetrievedData` | `int` | `10` | `No` | Determines the number of documents returned by the search query. |
