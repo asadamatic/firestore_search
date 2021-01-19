@@ -17,3 +17,7 @@
 ## [0.0.5] - 16-Jan-2021.
 
 * Fixed a bug in firestore_service class.
+
+## [0.0.6] - 16-Jan-2021.
+
+* Removed a few spaces that might have caused a bug.
