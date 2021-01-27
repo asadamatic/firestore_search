@@ -25,3 +25,9 @@
 ## [0.0.7] - 19-Jan-2021.
 
 * Fixed the package example & upgraded cloud_firestore to it's latest version.
+
+## [0.0.8] - 27-Jan-2021.
+
+* Added trailing search button to the search appbar.
+* Depends on `cloud_firestore: ^0.14.0`
+

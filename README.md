@@ -2,7 +2,7 @@
 
 This package helps developers in implementation of search on Cloud FireStore. This package comes with the implementation of widgets essential  for  performing search on a database.
 
-**For `cloud_firestore: ^0.14.0` use `firestore_search: ^0.0.6`**
+**For `cloud_firestore: ^0.14.0` use `firestore_search: ^0.0.8`**
 <p>
   <img width="216px" alt="Activated Search App BAr" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/searchbar.gif"/>
 
