@@ -122,8 +122,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                             margin: const EdgeInsets.only(left: 14.0),
                             child: Text(
                               widget?.appBarTitle ?? 'AppBar Title',
-                              style: TextStyle(
-                                  color: widget?.appBarTitleColor),
+                              style: TextStyle(color: widget?.appBarTitleColor),
                             ))
                     : searchField(),
               ),
@@ -216,9 +215,9 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
         decoration: InputDecoration(
           hintText: "Search...",
           border: InputBorder.none,
-          hintStyle: TextStyle(
-              color:
-                  widget?.searchTextHintColor),
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          hintStyle: TextStyle(color: widget?.searchTextHintColor),
           suffixIcon: searchQueryController.text.isNotEmpty
               ? IconButton(
                   alignment: Alignment.centerRight,
@@ -233,9 +232,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
         ),
         textAlignVertical: TextAlignVertical.center,
         textInputAction: TextInputAction.search,
-        style: TextStyle(
-            color: widget?.searchTextColor,
-            fontSize: 16.0),
+        style: TextStyle(color: widget?.searchTextColor, fontSize: 16.0),
         onChanged: (query) => updateSearchQuery(query),
       ),
     );

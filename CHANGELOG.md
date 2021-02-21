@@ -31,12 +31,14 @@
 * Added trailing search button to the search appbar.
 * Depends on `cloud_firestore: ^0.14.0`
 
-## [0.0.9] - 27-Jan-2021.
+## [0.0.9] - 21-Feb-2021.
 
 * Added trailing search button to the search appbar.
 * Depends on `cloud_firestore: ^0.16.0`
 
-## [0.1.0] - 27-Jan-2021.
+## [0.1.0] - 21-Feb-2021.
 
 * Removed most of the hard-coded color values.
 * Depends on `cloud_firestore: ^0.14.0`
+
+## [0.1.1] - 21-Feb-2021.
