@@ -101,6 +101,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
         appBar: AppBar(
           backgroundColor: widget.appBarBackgroundColor,
           centerTitle: true,
+          titleSpacing: 0.0,
           title: Row(
             children: [
               if (isSearching)
