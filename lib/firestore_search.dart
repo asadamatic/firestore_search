@@ -35,14 +35,14 @@ class FirestoreSearchScaffold extends StatefulWidget {
   const FirestoreSearchScaffold({
     this.appBarBottom,
     this.scaffoldBody = const Center(child: Text('Add a scaffold body')),
-    this.appBarBackgroundColor = Colors.white,
-    this.backButtonColor = Colors.blue,
-    this.clearSearchButtonColor = Colors.blue,
+    this.appBarBackgroundColor,
+    this.backButtonColor,
+    this.clearSearchButtonColor,
     this.searchBackgroundColor,
     this.searchTextColor,
     this.searchTextHintColor,
-    this.scaffoldBackgroundColor = Colors.white,
-    this.searchBodyBackgroundColor = Colors.white,
+    this.scaffoldBackgroundColor,
+    this.searchBodyBackgroundColor,
     this.showSearchIcon = false,
     this.searchIconColor,
     this.appBarTitle,
@@ -97,11 +97,10 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: widget.scaffoldBackgroundColor,
+        backgroundColor: widget?.scaffoldBackgroundColor,
         appBar: AppBar(
           backgroundColor: widget.appBarBackgroundColor,
           centerTitle: true,
-          titleSpacing: 0.0,
           title: Row(
             children: [
               if (isSearching)
@@ -124,8 +123,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                             child: Text(
                               widget?.appBarTitle ?? 'AppBar Title',
                               style: TextStyle(
-                                  color: widget?.appBarTitleColor ??
-                                      Theme.of(context).primaryColor),
+                                  color: widget?.appBarTitleColor),
                             ))
                     : searchField(),
               ),
@@ -220,7 +218,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
           border: InputBorder.none,
           hintStyle: TextStyle(
               color:
-                  widget?.searchTextHintColor ?? Colors.black.withOpacity(.6)),
+                  widget?.searchTextHintColor),
           suffixIcon: searchQueryController.text.isNotEmpty
               ? IconButton(
                   alignment: Alignment.centerRight,
@@ -236,7 +234,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
         textAlignVertical: TextAlignVertical.center,
         textInputAction: TextInputAction.search,
         style: TextStyle(
-            color: widget?.searchTextColor ?? Colors.black.withOpacity(.8),
+            color: widget?.searchTextColor,
             fontSize: 16.0),
         onChanged: (query) => updateSearchQuery(query),
       ),
