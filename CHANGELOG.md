@@ -47,3 +47,10 @@
 
 * Fixed a glitch in search bar design.
 * Depends on `cloud_firestore: ^0.14.0`
+
+## [0.1.3] - 17-June-2021.
+
+* Depends on `cloud_firestore: ^2.2.2`
+
+
+
