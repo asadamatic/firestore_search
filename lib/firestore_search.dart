@@ -4,6 +4,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FirestoreSearchScaffold extends StatefulWidget {
+  final Widget scaffoldBody;
+
+  final PreferredSizeWidget? appBarBottom;
+  final Color? appBarBackgroundColor;
+  final Color? backButtonColor;
+  final Color? clearSearchButtonColor;
+  final Color? searchBackgroundColor;
+  final Color? searchTextColor;
+  final Color? searchTextHintColor;
+  final Color? scaffoldBackgroundColor;
+  final Color? searchBodyBackgroundColor;
+  final Color? appBarTitleColor;
+  final Color? searchIconColor;
+
+  final bool showSearchIcon;
+
+  /// Name of the cloud_firestore collection you
+  ///
+  /// want to search data from
+  final String? firestoreCollectionName;
+  final String? searchBy;
+  final String? appBarTitle;
+  final List Function(QuerySnapshot) dataListFromSnapshot;
+
+  /// Refers to the [builder] parameter of StreamBuilder used to
+  ///
+  /// retrieve search results from cloud_firestore
+  ///
+  /// Use this function display the search results retrieved from cloud_firestore
+  final Widget Function(BuildContext, AsyncSnapshot)? builder;
+  final int limitOfRetrievedData;
+
   /// Creates a scaffold with a search AppBar and integrated cloud_firestore search.
   ///
   /// You can set the scaffold body using the [scaffoldBody] widget
@@ -11,64 +43,29 @@ class FirestoreSearchScaffold extends StatefulWidget {
   /// You can add a bottom widget to search AppBar using the [appBarBottom] widget
   ///
   /// [firestoreCollectionName] , [dataListFromSnapshot] are required
-
-  final Widget scaffoldBody;
-
-  final PreferredSizeWidget appBarBottom;
-  final Color appBarBackgroundColor,
-      backButtonColor,
-      clearSearchButtonColor,
-      searchBackgroundColor,
-      searchTextColor,
-      searchTextHintColor,
-      scaffoldBackgroundColor,
-      searchBodyBackgroundColor,
-      appBarTitleColor,
-      searchIconColor;
-
-  final bool showSearchIcon;
-  final String firestoreCollectionName, searchBy, appBarTitle;
-  final List Function(QuerySnapshot) dataListFromSnapshot;
-  final Widget Function(BuildContext, AsyncSnapshot) builder;
-  final int limitOfRetrievedData;
-
   const FirestoreSearchScaffold({
     this.appBarBottom,
     this.scaffoldBody = const Center(child: Text('Add a scaffold body')),
     this.appBarBackgroundColor,
     this.backButtonColor,
     this.clearSearchButtonColor,
-    this.searchBackgroundColor,
+    this.searchBackgroundColor = Colors.white,
+    this.searchBodyBackgroundColor = Colors.white,
     this.searchTextColor,
     this.searchTextHintColor,
     this.scaffoldBackgroundColor,
-    this.searchBodyBackgroundColor,
     this.showSearchIcon = false,
     this.searchIconColor,
     this.appBarTitle,
     this.appBarTitleColor,
-
-    /// Name of the cloud_firestore collection you
-    /// want to search data from
-    @required this.firestoreCollectionName,
-    @required this.searchBy,
-
-    /// This function takes QuerySnapshot as an argument an returns the object of your dataMode
-    /// See example of such a function here
-    @required this.dataListFromSnapshot,
-
-    /// Refers to the [builder] parameter of StreamBuilder used to
-    /// retrieve search results from cloud_firestore
-    /// Use this function display the search results retrieved from cloud_firestore
+    required String this.firestoreCollectionName,
+    required this.searchBy,
+    required this.dataListFromSnapshot,
     this.builder,
     this.limitOfRetrievedData = 10,
-  })  : //Firestore parameters assertions
+  }) : //Firestore parameters assertions
         assert(limitOfRetrievedData >= 1 && limitOfRetrievedData <= 30,
-            'limitOfRetrievedData should be between 1 and 30.\n'),
-        assert(firestoreCollectionName != null,
-            'firestoreCollectionName is required.\n'),
-        assert(dataListFromSnapshot != null,
-            'dataListFromSnapshot is required, this function converts QuerySnapshot from firestore to a list of your custom data model.\n');
+            'limitOfRetrievedData should be between 1 and 30.\n');
 
   @override
   _FirestoreSearchScaffoldState createState() =>
@@ -97,7 +94,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: widget?.scaffoldBackgroundColor,
+        backgroundColor: widget.scaffoldBackgroundColor,
         appBar: AppBar(
           backgroundColor: widget.appBarBackgroundColor,
           centerTitle: true,
@@ -122,8 +119,8 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                         : Container(
                             margin: const EdgeInsets.only(left: 14.0),
                             child: Text(
-                              widget?.appBarTitle ?? 'AppBar Title',
-                              style: TextStyle(color: widget?.appBarTitleColor),
+                              widget.appBarTitle ?? 'AppBar Title',
+                              style: TextStyle(color: widget.appBarTitleColor),
                             ))
                     : searchField(),
               ),
@@ -131,7 +128,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                 IconButton(
                     icon: const Icon(Icons.search),
                     padding: const EdgeInsets.all(0),
-                    color: widget?.searchIconColor ??
+                    color: widget.searchIconColor ??
                         Theme.of(context).primaryColor,
                     onPressed: () {
                       setState(() {
@@ -162,7 +159,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                             dataListFromSnapshot: widget.dataListFromSnapshot,
                             limitOfRetrievedData: widget.limitOfRetrievedData)
                         .searchData(searchQuery),
-                    builder: widget.builder),
+                    builder: widget.builder!),
               )
           ],
         ));
@@ -208,7 +205,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4.0),
-        color: widget?.searchBackgroundColor ?? Colors.blueGrey.withOpacity(.2),
+        color: widget.searchBackgroundColor ?? Colors.blueGrey.withOpacity(.2),
       ),
       child: TextField(
         controller: searchQueryController,
@@ -218,7 +215,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
           border: InputBorder.none,
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
-          hintStyle: TextStyle(color: widget?.searchTextHintColor),
+          hintStyle: TextStyle(color: widget.searchTextHintColor),
           suffixIcon: searchQueryController.text.isNotEmpty
               ? IconButton(
                   alignment: Alignment.centerRight,
@@ -233,7 +230,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
         ),
         textAlignVertical: TextAlignVertical.center,
         textInputAction: TextInputAction.search,
-        style: TextStyle(color: widget?.searchTextColor, fontSize: 16.0),
+        style: TextStyle(color: widget.searchTextColor, fontSize: 16.0),
         onChanged: (query) => updateSearchQuery(query),
       ),
     );

@@ -1,8 +1,11 @@
 # Firestore Search Scaffold - firestore_search
 
 This package helps developers in implementation of search on Cloud FireStore. This package comes with the implementation of widgets essential  for  performing search on a database.
+### Make sure to use `firestore_core` in your project
+### **Depends on `cloud_firestore: ^2.2.2`**
 
-## **Depends on `cloud_firestore: ^2.2.2`**
+
+
 <p>
   <img width="216px" alt="Activated Search App BAr" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/searchbar.gif"/>
 
@@ -27,7 +30,7 @@ To use this plugin, add `firestore_search` as a
 [dependency in your pubspec.yaml file](https://pub.dev/packages/firestore_search/install).
 
 
-##Implementation:
+## Implementation:
 
 * Import `import 'package:firestore_search/firestore_search.dart';`
 
@@ -35,20 +38,26 @@ To use this plugin, add `firestore_search` as a
 
 ```
 class DataModel {
-  final String name;
-  final String description;
+  final String? name;
+  final String? developer;
+  final String? framework;
+  final String? tool;
 
-  DataModel({this.name, this.description});
+  DataModel({this.name, this.developer, this.framework, this.tool});
 
   //Create a method to convert QuerySnapshot from Cloud Firestore to a list of objects of this DataModel
   //This function in essential to the working of FirestoreSearchScaffold
 
-  List<DataModel> **dataListFromSnapshot**(QuerySnapshot querySnapshot) {
+  List<DataModel> dataListFromSnapshot(QuerySnapshot querySnapshot) {
     return querySnapshot.docs.map((snapshot) {
-      final Map<String, dynamic> dataMap = snapshot.data();
+      final Map<String, dynamic> dataMap =
+          snapshot.data() as Map<String, dynamic>;
 
       return DataModel(
-          name: dataMap['name'], description: dataMap['description']);
+          name: dataMap['name'],
+          developer: dataMap['developer'],
+          framework: dataMap['framework'],
+          tool: dataMap['tool']);
     }).toList();
   }
 }
@@ -58,26 +67,64 @@ class DataModel {
 
 ```
 FirestoreSearchScaffold(
-        dataListFromSnapshot: UserData().userListFromSnapshot,
-        firestoreCollectionName: 'users',
-        builder: (context, snapshot) {
+      firestoreCollectionName: 'packages',
+      searchBy: 'tool',
+      scaffoldBody: const Center(child: Text('Firestore Search')),
+      dataListFromSnapshot: DataModel().dataListFromSnapshot,
+      builder: (context, snapshot) {
+
           if (snapshot.hasData) {
-            return Center(
-              child: Text('Snapshot has data'),
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text('Snapshot has data'),
-            );
+            final List<DataModel>? dataList = snapshot.data;
+
+            return ListView.builder(
+                itemCount: dataList?.length ?? 0,
+                itemBuilder: (context, index) {
+                  final DataModel data = dataList![index];
+
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '${data.name}',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 8.0, left: 8.0, right: 8.0),
+                        child: Text('${data.developer}',
+                            style: Theme.of(context).textTheme.bodyText1),
+                      )
+                    ],
+                  );
+                });
           }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-        ));
+
+
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (!snapshot.hasData){
+              return const Center(child: Text('No Results Returned'),);
+            }
+          }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
 ```
 
-                                                                                      ##You are good to go!
+                                                                                       
+## <div align="center">You are good to go 💯</div>
+
+---
+
+
+
+
 
 In order to add the `FirestoreSearchScaffold` in your app, there are several attributes that are important and neglecting them  or treating them roughly might throw errors:
 

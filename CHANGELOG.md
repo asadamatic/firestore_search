@@ -52,5 +52,11 @@
 
 * Depends on `cloud_firestore: ^2.2.2`
 
+## [0.1.4] - 6-Oct-2021.
+
+* Sound null safety enabled
+* Includes working example
+* Working examples for Android, Ios & Web
+
 
 
