@@ -94,7 +94,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: widget?.scaffoldBackgroundColor,
+        backgroundColor: widget.scaffoldBackgroundColor,
         appBar: AppBar(
           backgroundColor: widget.appBarBackgroundColor,
           centerTitle: true,
@@ -119,8 +119,8 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                         : Container(
                             margin: const EdgeInsets.only(left: 14.0),
                             child: Text(
-                              widget?.appBarTitle ?? 'AppBar Title',
-                              style: TextStyle(color: widget?.appBarTitleColor),
+                              widget.appBarTitle ?? 'AppBar Title',
+                              style: TextStyle(color: widget.appBarTitleColor),
                             ))
                     : searchField(),
               ),
@@ -128,7 +128,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                 IconButton(
                     icon: const Icon(Icons.search),
                     padding: const EdgeInsets.all(0),
-                    color: widget?.searchIconColor ??
+                    color: widget.searchIconColor ??
                         Theme.of(context).primaryColor,
                     onPressed: () {
                       setState(() {
@@ -159,7 +159,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                             dataListFromSnapshot: widget.dataListFromSnapshot,
                             limitOfRetrievedData: widget.limitOfRetrievedData)
                         .searchData(searchQuery),
-                    builder: widget.builder),
+                    builder: widget.builder!),
               )
           ],
         ));
@@ -205,7 +205,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4.0),
-        color: widget?.searchBackgroundColor ?? Colors.blueGrey.withOpacity(.2),
+        color: widget.searchBackgroundColor ?? Colors.blueGrey.withOpacity(.2),
       ),
       child: TextField(
         controller: searchQueryController,
@@ -215,7 +215,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
           border: InputBorder.none,
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
-          hintStyle: TextStyle(color: widget?.searchTextHintColor),
+          hintStyle: TextStyle(color: widget.searchTextHintColor),
           suffixIcon: searchQueryController.text.isNotEmpty
               ? IconButton(
                   alignment: Alignment.centerRight,
@@ -230,7 +230,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
         ),
         textAlignVertical: TextAlignVertical.center,
         textInputAction: TextInputAction.search,
-        style: TextStyle(color: widget?.searchTextColor, fontSize: 16.0),
+        style: TextStyle(color: widget.searchTextColor, fontSize: 16.0),
         onChanged: (query) => updateSearchQuery(query),
       ),
     );
