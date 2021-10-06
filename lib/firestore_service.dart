@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreServicePackage<T> {
-  final String? collectionName;
-  final String? searchBy;
-  final List Function(QuerySnapshot)? dataListFromSnapshot;
-  final int? limitOfRetrievedData;
+  final String collectionName;
+  final String searchBy;
+  final List Function(QuerySnapshot) dataListFromSnapshot;
+  final int limitOfRetrievedData;
 
   FirestoreServicePackage(
       {this.collectionName,
@@ -14,13 +14,12 @@ class FirestoreServicePackage<T> {
   final FirebaseFirestore firebasefirestore = FirebaseFirestore.instance;
 
   Stream<List> searchData(String query) {
-    final collectionReference = firebasefirestore.collection(collectionName!);
+    final collectionReference = firebasefirestore.collection(collectionName);
 
-    // TODO: Add more filters
     return collectionReference
-        .where('$searchBy', isGreaterThanOrEqualTo: query)
-        .limit(limitOfRetrievedData!)
+        .where('$searchBy', isGreaterThanOrEqualTo: query ?? '')
+        .limit(limitOfRetrievedData)
         .snapshots()
-        .map(dataListFromSnapshot!);
+        .map(dataListFromSnapshot);
   }
 }
