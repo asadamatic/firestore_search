@@ -38,20 +38,20 @@ class _SearchFeedState extends State<SearchFeed> {
       dataListFromSnapshot: DataModel().dataListFromSnapshot,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          final List<DataModel> dataList = snapshot.data;
+          final List<DataModel>? dataList = snapshot.data;
 
           return ListView.builder(
               itemCount: dataList?.length ?? 0,
               itemBuilder: (context, index) {
-                final DataModel data = dataList[index];
+                final DataModel data = dataList![index];
 
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('${data?.name ?? ''}'),
-                    Text('${data?.description ?? ''}')
+                    Text('${data.name ?? ''}'),
+                    Text('${data.description ?? ''}')
                   ],
                 );
               });
