@@ -58,5 +58,10 @@
 * Includes working example
 * Working examples for Android, Ios & Web
 
+## [0.1.5] - 7-Oct-2021.
+
+* Fixes #5
+* Search is more optimized
+
 
 

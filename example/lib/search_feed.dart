@@ -21,7 +21,10 @@ class _SearchFeedState extends State<SearchFeed> {
 
           if (snapshot.hasData) {
             final List<DataModel>? dataList = snapshot.data;
+            if (dataList!.isEmpty){
 
+              return const Center(child: Text('No Results Returned'),);
+            }
             return ListView.builder(
                 itemCount: dataList?.length ?? 0,
                 itemBuilder: (context, index) {
