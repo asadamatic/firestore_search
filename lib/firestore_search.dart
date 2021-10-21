@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_search/firestore_service.dart';
+import 'package:firestore_search/src/firestore_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -153,7 +153,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                 height: MediaQuery.of(context).size.height,
                 color: widget.searchBodyBackgroundColor,
                 child: StreamBuilder<List>(
-                    stream: FirestoreServicePackage(
+                    stream: FirestoreService(
                             collectionName: widget.firestoreCollectionName,
                             searchBy: widget.searchBy ?? '',
                             dataListFromSnapshot: widget.dataListFromSnapshot,

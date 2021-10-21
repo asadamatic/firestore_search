@@ -64,4 +64,6 @@
 * Search is more optimized
 
 
-
+## Release [0.1.6] - 21-Oct-2021.
+   
+* FirestoreService class is now hidden outside the pacakge.
