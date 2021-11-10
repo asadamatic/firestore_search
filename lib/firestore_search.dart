@@ -1,11 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_search/src/firestore_service.dart';
+import 'package:firestore_search/src/mvc/controllers/firestore_search_controller.dart';
+import 'package:firestore_search/src/mvc/services/firestore_service.dart';
+import 'package:firestore_search/src/mvc/widgets/search_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+export 'package:firestore_search/src/mvc/controllers/firestore_search_controller.dart'
+    hide FirestoreSearchController;
+export 'package:firestore_search/src/mvc/views/search_bar.dart'
+    show FirestoreSearchBar;
+export 'package:firestore_search/src/mvc/views/search_results.dart'
+    show FirestoreSearchResults;
 
 class FirestoreSearchScaffold extends StatefulWidget {
   final Widget scaffoldBody;
 
+  /// Widget that will be displayed in the bottom of app bar
+  ///
   final PreferredSizeWidget? appBarBottom;
   final Color? appBarBackgroundColor;
   final Color? backButtonColor;
@@ -88,6 +99,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
         });
       }
     });
+
     super.initState();
   }
 
@@ -115,14 +127,37 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
               Expanded(
                 child: widget.showSearchIcon
                     ? isSearching
-                        ? searchField()
+                        ? SearchFiled(
+                            searchQueryController: searchQueryController,
+                            isSearching: isSearching,
+                            showSearchIcon: widget.showSearchIcon,
+                            clearSearchButtonColor:
+                                widget.clearSearchButtonColor,
+                            searchFocusNode: searchFocusNode,
+                            searchBackgroundColor: widget.searchBackgroundColor,
+                            searchTextColor: widget.searchTextColor,
+                            searchTextHintColor: widget.searchTextHintColor,
+                            onClearButtonPressed: clearSearchQuery,
+                            onSearchQueryChanged: updateSearchQuery,
+                          )
                         : Container(
                             margin: const EdgeInsets.only(left: 14.0),
                             child: Text(
                               widget.appBarTitle ?? 'AppBar Title',
                               style: TextStyle(color: widget.appBarTitleColor),
                             ))
-                    : searchField(),
+                    : SearchFiled(
+                        searchQueryController: searchQueryController,
+                        isSearching: isSearching,
+                        showSearchIcon: widget.showSearchIcon,
+                        searchFocusNode: searchFocusNode,
+                        clearSearchButtonColor: widget.clearSearchButtonColor,
+                        searchBackgroundColor: widget.searchBackgroundColor,
+                        searchTextColor: widget.searchTextColor,
+                        searchTextHintColor: widget.searchTextHintColor,
+                        onClearButtonPressed: clearSearchQuery,
+                        onSearchQueryChanged: updateSearchQuery,
+                      ),
               ),
               if (widget.showSearchIcon)
                 IconButton(
@@ -152,14 +187,18 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 color: widget.searchBodyBackgroundColor,
-                child: StreamBuilder<List>(
-                    stream: FirestoreService(
-                            collectionName: widget.firestoreCollectionName,
-                            searchBy: widget.searchBy ?? '',
-                            dataListFromSnapshot: widget.dataListFromSnapshot,
-                            limitOfRetrievedData: widget.limitOfRetrievedData)
-                        .searchData(searchQuery),
-                    builder: widget.builder!),
+                child: searchQuery.isEmpty
+                    ? SizedBox()
+                    : StreamBuilder<List>(
+                        stream: FirestoreService(
+                                collectionName: widget.firestoreCollectionName,
+                                searchBy: widget.searchBy ?? '',
+                                dataListFromSnapshot:
+                                    widget.dataListFromSnapshot,
+                                limitOfRetrievedData:
+                                    widget.limitOfRetrievedData)
+                            .searchData(searchQuery),
+                        builder: widget.builder!),
               )
           ],
         ));
@@ -190,49 +229,5 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
     // TODO: implement dispose
     searchQueryController.dispose();
     super.dispose();
-  }
-
-  Widget searchField() {
-    return Container(
-      alignment: Alignment.center,
-      height: 40.0,
-      margin: widget.showSearchIcon
-          ? const EdgeInsets.only(bottom: 3.5, top: 3.5, right: 2.0, left: 2.0)
-          : isSearching
-              ? const EdgeInsets.only(bottom: 3.5, top: 3.5, right: 10.0)
-              : const EdgeInsets.only(
-                  bottom: 3.5, top: 3.5, right: 10.0, left: 10.0),
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4.0),
-        color: widget.searchBackgroundColor ?? Colors.blueGrey.withOpacity(.2),
-      ),
-      child: TextField(
-        controller: searchQueryController,
-        focusNode: searchFocusNode,
-        decoration: InputDecoration(
-          hintText: "Search...",
-          border: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          hintStyle: TextStyle(color: widget.searchTextHintColor),
-          suffixIcon: searchQueryController.text.isNotEmpty
-              ? IconButton(
-                  alignment: Alignment.centerRight,
-                  color: widget.clearSearchButtonColor,
-                  icon: const Icon(Icons.clear),
-                  onPressed: clearSearchQuery,
-                )
-              : const SizedBox(
-                  height: 0.0,
-                  width: 0.0,
-                ),
-        ),
-        textAlignVertical: TextAlignVertical.center,
-        textInputAction: TextInputAction.search,
-        style: TextStyle(color: widget.searchTextColor, fontSize: 16.0),
-        onChanged: (query) => updateSearchQuery(query),
-      ),
-    );
   }
 }

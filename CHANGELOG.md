@@ -66,4 +66,9 @@
 
 ## Release [0.1.6] - 21-Oct-2021.
    
-* FirestoreService class is now hidden outside the pacakge.
+* FirestoreService class is now hidden outside the package.
+
+## Release [0.1.7] - 10-Nov-2021.
+   
+* Includes separate widgets for `Search` and `Results`
+* `FirestoreSearchBar` provides a search field that links to `FirestoreSearchResults` using a string `tag`
