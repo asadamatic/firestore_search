@@ -21,6 +21,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FIRESTORE_SEARCH_PUB }}'
           projectId: firestore-search-pub
-          entryPoint: ./example
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
