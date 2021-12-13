@@ -72,3 +72,7 @@
    
 * Includes separate widgets for `Search` and `Results`
 * `FirestoreSearchBar` provides a search field that links to `FirestoreSearchResults` using a string `tag`
+
+## Release [0.1.8] - 13-Dec-2021.
+
+* Migrated to `cloud_firestore: ^3.1.4`

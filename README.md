@@ -2,7 +2,7 @@
 
 This package helps developers in implementation of search on Cloud FireStore. This package comes with the implementation of widgets essential  for  performing search on a database.
 ### Make sure to use `firestore_core` in your project
-### **Depends on `cloud_firestore: ^2.2.2`**
+### **Depends on `cloud_firestore: ^3.1.4`**
 ### **Depends on `get: ^4.3.8`**
 
 <br>
@@ -20,8 +20,8 @@ This package helps developers in implementation of search on Cloud FireStore. Th
 ### Separate widgets for `Search` and `Results`
 <br>
 
-![Separated widgets for firestore search](https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/separated_search.gif?raw=true)
 
+<img width="216" alt="Separated widgets for firestore search" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/separated_search.gif?raw=true" />
 
 [![Pub Version](https://img.shields.io/pub/v/firestore_search?logo=flutter&style=for-the-badge)](https://pub.dev/packages/firestore_search)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asadamatic/firestore_search/pub_publish?logo=github&style=for-the-badge)
