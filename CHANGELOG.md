@@ -76,3 +76,7 @@
 ## Release [0.1.8] - 13-Dec-2021.
 
 * Migrated to `cloud_firestore: ^3.1.4`
+
+## Release [0.1.9] - 13-Dec-2021.
+
+* Documented separated widgets implementation.
