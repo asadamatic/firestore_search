@@ -47,7 +47,8 @@ class FirestoreSearchResults extends StatelessWidget {
   /// This widget can be used anywhere is the widget tree, and the results will correspond the [searchQuery] of [FirestoreSearchBar] linked by [tag] parameter
   ///
   const FirestoreSearchResults.builder(
-      {this.tag,
+      {
+        required this.tag,
       required this.firestoreCollectionName,
       required this.searchBy,
       this.limitOfRetrievedData = 10,

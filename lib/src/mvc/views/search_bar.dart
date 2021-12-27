@@ -14,7 +14,8 @@ class FirestoreSearchBar extends StatelessWidget {
   final bool? showSearchIcon;
   final String? tag;
   FirestoreSearchBar(
-      {this.tag,
+      {
+        required this.tag,
       this.clearSearchButtonColor,
       this.searchBackgroundColor,
       this.searchTextColor,

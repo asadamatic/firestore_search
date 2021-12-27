@@ -1,6 +1,10 @@
 # Firestore Search Scaffold - firestore_search
 
 This package helps developers in implementation of search on Cloud FireStore. This package comes with the implementation of widgets essential  for  performing search on a database.
+
+# [Live Web Demo](https://asadamatic-pub-packages.web.app)
+
+
 ### Make sure to use `firestore_core` in your project
 ### **Depends on `cloud_firestore: ^3.1.4`**
 ### **Depends on `get: ^4.3.8`**
@@ -41,13 +45,87 @@ To use this plugin, add `firestore_search` as a
 [dependency in your pubspec.yaml file](https://pub.dev/packages/firestore_search/install).
 
 
+
+## Major Update 0.1.7
+
+Separated widgets for search and results.
+
+Use `FirestoreSearchBar` to display a search field and provide a unique `tag` that will be passed to the respective `FirestoreSearchResults.builder` to display results from the requested queries.
+
+*FirestoreSearchBar*
+
+```dart
+FirestoreSearchBar(
+                tag: 'example',
+              )
+```
+
+*FirestoreSearchResults.builder*
+
+```dart
+FirestoreSearchResults.builder(
+              tag: 'example',
+              firestoreCollectionName: 'packages',
+              searchBy: 'tool',
+              initialBody: const Center(child: Text('Initial body'),),
+              dataListFromSnapshot: DataModel().dataListFromSnapshot,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final List<DataModel>? dataList = snapshot.data;
+                  if (dataList!.isEmpty) {
+                    return const Center(
+                      child: Text('No Results Returned'),
+                    );
+                  }
+                  return ListView.builder(
+                      itemCount: dataList.length,
+                      itemBuilder: (context, index) {
+                        final DataModel data = dataList[index];
+
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                '${data.name}',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: 8.0, left: 8.0, right: 8.0),
+                              child: Text('${data.developer}',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            )
+                          ],
+                        );
+                      });
+                }
+
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: Text('No Results Returned'),
+                    );
+                  }
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            )
+```
+
 ## Implementation:
 
 * Import `import 'package:firestore_search/firestore_search.dart';`
 
 * Create a data model, for the data you want retrieve from Cloud FireStore _(Your data model class must contain a function to convert QuerySnapshot from Cloud Firestore to a list of objects of your data model)_
 
-```
+```dart
 class DataModel {
   final String? name;
   final String? developer;
@@ -76,56 +154,60 @@ class DataModel {
 
 * Use class `FirestoreSearchScaffold` and provide the required parameters
 
-```
+```dart
 FirestoreSearchScaffold(
       firestoreCollectionName: 'packages',
       searchBy: 'tool',
-      scaffoldBody: const Center(child: Text('Firestore Search')),
+      scaffoldBody: Center(),
       dataListFromSnapshot: DataModel().dataListFromSnapshot,
       builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final List<DataModel>? dataList = snapshot.data;
+          if (dataList!.isEmpty) {
+            return const Center(
+              child: Text('No Results Returned'),
+            );
+          }
+          return ListView.builder(
+              itemCount: dataList.length,
+              itemBuilder: (context, index) {
+                final DataModel data = dataList[index];
 
-          if (snapshot.hasData) {
-            final List<DataModel>? dataList = snapshot.data;
-
-            return ListView.builder(
-                itemCount: dataList?.length ?? 0,
-                itemBuilder: (context, index) {
-                  final DataModel data = dataList![index];
-
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '${data.name}',
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '${data.name}',
+                        style: Theme.of(context).textTheme.headline6,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 8.0, left: 8.0, right: 8.0),
-                        child: Text('${data.developer}',
-                            style: Theme.of(context).textTheme.bodyText1),
-                      )
-                    ],
-                  );
-                });
-          }
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 8.0, left: 8.0, right: 8.0),
+                      child: Text('${data.developer}',
+                          style: Theme.of(context).textTheme.bodyText1),
+                    )
+                  ],
+                );
+              });
+        }
 
-
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (!snapshot.hasData){
-              return const Center(child: Text('No Results Returned'),);
-            }
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (!snapshot.hasData) {
+            return const Center(
+              child: Text('No Results Returned'),
+            );
           }
+        }
         return const Center(
           child: CircularProgressIndicator(),
         );
       },
-    );
+    )
 ```
 
                                                                                        
