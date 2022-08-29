@@ -29,6 +29,9 @@ class FirestoreSearchScaffold extends StatefulWidget {
   final Color? appBarTitleColor;
   final Color? searchIconColor;
 
+  final TextCapitalization textCapitalization = TextCapitalization.sentences;
+  final TextInputType keyboardType = TextInputType.text;
+
   final bool showSearchIcon;
 
   /// Name of the cloud_firestore collection you
@@ -69,6 +72,8 @@ class FirestoreSearchScaffold extends StatefulWidget {
     this.searchIconColor,
     this.appBarTitle,
     this.appBarTitleColor,
+    this.textCapitalization,
+    this.keyboardType,
     required String this.firestoreCollectionName,
     required this.searchBy,
     required this.dataListFromSnapshot,
@@ -128,6 +133,8 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                 child: widget.showSearchIcon
                     ? isSearching
                         ? SearchFiled(
+                            textCapitalization: widget.textCapitalization,
+                            keyboardType: widget.keyboardType,
                             searchQueryController: searchQueryController,
                             isSearching: isSearching,
                             showSearchIcon: widget.showSearchIcon,
@@ -147,6 +154,8 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                               style: TextStyle(color: widget.appBarTitleColor),
                             ))
                     : SearchFiled(
+                        textCapitalization: widget.textCapitalization,
+                        keyboardType: widget.keyboardType,
                         searchQueryController: searchQueryController,
                         isSearching: isSearching,
                         showSearchIcon: widget.showSearchIcon,
