@@ -29,8 +29,8 @@ class FirestoreSearchScaffold extends StatefulWidget {
   final Color? appBarTitleColor;
   final Color? searchIconColor;
 
-  final TextCapitalization textCapitalization = TextCapitalization.sentences;
-  final TextInputType keyboardType = TextInputType.text;
+  final TextCapitalization textCapitalization;
+  final TextInputType keyboardType;
 
   final bool showSearchIcon;
 
@@ -72,8 +72,8 @@ class FirestoreSearchScaffold extends StatefulWidget {
     this.searchIconColor,
     this.appBarTitle,
     this.appBarTitleColor,
-    this.textCapitalization,
-    this.keyboardType,
+    this.textCapitalization = TextCapitalization.sentences,
+    this.keyboardType = TextInputType.text,
     required String this.firestoreCollectionName,
     required this.searchBy,
     required this.dataListFromSnapshot,
