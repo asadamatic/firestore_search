@@ -12,8 +12,8 @@ class SearchFiled extends StatelessWidget {
   final Function(String)? onSearchQueryChanged;
   final Function(String)? onSearchQueryUpdated;
   final Function(String)? onEditingComplete;
-  final TextCapitalization textCapitalization = TextCapitalization.sentences;
-  final TextInputType keyboardType = TextInputType.text;
+  final TextCapitalization? textCapitalization;
+  final TextInputType? keyboardType;
   TextEditingController? searchQueryController;
   SearchFiled(
       {this.showSearchIcon = false,
@@ -50,8 +50,8 @@ class SearchFiled extends StatelessWidget {
         color: searchBackgroundColor ?? Colors.blueGrey.withOpacity(.2),
       ),
       child: TextField(
-        textCapitalization: textCapitalization,
-        keyboardType: keyboardType,
+        textCapitalization: textCapitalization!,
+        keyboardType: keyboardType!,
         controller: searchQueryController,
         focusNode: searchFocusNode,
         decoration: InputDecoration(
