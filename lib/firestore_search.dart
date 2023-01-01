@@ -28,6 +28,7 @@ class FirestoreSearchScaffold extends StatefulWidget {
   final Color? searchBodyBackgroundColor;
   final Color? appBarTitleColor;
   final Color? searchIconColor;
+  final Widget? bottomNavigationBar;
 
   final bool showSearchIcon;
 
@@ -69,6 +70,7 @@ class FirestoreSearchScaffold extends StatefulWidget {
     this.searchIconColor,
     this.appBarTitle,
     this.appBarTitleColor,
+    this.bottomNavigationBar,
     required String this.firestoreCollectionName,
     required this.searchBy,
     required this.dataListFromSnapshot,
@@ -106,6 +108,7 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: widget.bottomNavigationBar,
         backgroundColor: widget.scaffoldBackgroundColor,
         appBar: AppBar(
           backgroundColor: widget.appBarBackgroundColor,
