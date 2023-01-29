@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_search/src/mvc/controllers/firestore_search_controller.dart';
-import 'package:firestore_search/src/mvc/services/firestore_service.dart';
-import 'package:firestore_search/src/mvc/widgets/search_field.dart';
+import 'package:firestore_search_input/src/mvc/controllers/firestore_search_controller.dart';
+import 'package:firestore_search_input/src/mvc/services/firestore_service.dart';
+import 'package:firestore_search_input/src/mvc/widgets/search_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-export 'package:firestore_search/src/mvc/controllers/firestore_search_controller.dart'
+export 'package:firestore_search_input/src/mvc/controllers/firestore_search_controller.dart'
     hide FirestoreSearchController;
-export 'package:firestore_search/src/mvc/views/search_bar.dart'
+export 'package:firestore_search_input/src/mvc/views/search_bar.dart'
     show FirestoreSearchBar;
-export 'package:firestore_search/src/mvc/views/search_results.dart'
+export 'package:firestore_search_input/src/mvc/views/search_results.dart'
     show FirestoreSearchResults;
 
 class FirestoreSearchScaffold extends StatefulWidget {
@@ -28,6 +28,9 @@ class FirestoreSearchScaffold extends StatefulWidget {
   final Color? searchBodyBackgroundColor;
   final Color? appBarTitleColor;
   final Color? searchIconColor;
+
+  final TextCapitalization textCapitalization;
+  final TextInputType keyboardType;
 
   final bool showSearchIcon;
 
@@ -69,6 +72,8 @@ class FirestoreSearchScaffold extends StatefulWidget {
     this.searchIconColor,
     this.appBarTitle,
     this.appBarTitleColor,
+    this.textCapitalization = TextCapitalization.sentences,
+    this.keyboardType = TextInputType.text,
     required String this.firestoreCollectionName,
     required this.searchBy,
     required this.dataListFromSnapshot,
@@ -128,6 +133,8 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                 child: widget.showSearchIcon
                     ? isSearching
                         ? SearchFiled(
+                            textCapitalization: widget.textCapitalization,
+                            keyboardType: widget.keyboardType,
                             searchQueryController: searchQueryController,
                             isSearching: isSearching,
                             showSearchIcon: widget.showSearchIcon,
@@ -147,6 +154,8 @@ class _FirestoreSearchScaffoldState extends State<FirestoreSearchScaffold> {
                               style: TextStyle(color: widget.appBarTitleColor),
                             ))
                     : SearchFiled(
+                        textCapitalization: widget.textCapitalization,
+                        keyboardType: widget.keyboardType,
                         searchQueryController: searchQueryController,
                         isSearching: isSearching,
                         showSearchIcon: widget.showSearchIcon,
