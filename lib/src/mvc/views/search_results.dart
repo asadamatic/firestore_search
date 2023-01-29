@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_search/firestore_search.dart';
-import 'package:firestore_search/src/mvc/controllers/firestore_search_controller.dart';
-import 'package:firestore_search/src/mvc/services/firestore_service.dart';
+import 'package:firestore_search_input/firestore_search_input.dart';
+import 'package:firestore_search_input/src/mvc/controllers/firestore_search_controller.dart';
+import 'package:firestore_search_input/src/mvc/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

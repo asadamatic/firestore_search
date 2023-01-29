@@ -1,37 +1,12 @@
-# Firestore Search Scaffold - firestore_search
+# Firestore Search Scaffold - firestore_search_input
 
-This package helps developers in implementation of search on Cloud FireStore. This package comes with the implementation of widgets essential  for  performing search on a database.
-
-# [Live Web Demo](https://asadamatic-pub-packages.web.app)
-
+Live search in Cloud Firestore.
 
 ### Make sure to use `firestore_core` in your project
-### **Depends on `cloud_firestore: ^3.1.4`**
-### **Depends on `get: ^4.3.8`**
+### **Depends on `cloud_firestore: ^4.3.1`**
+### **Depends on `get: ^4.6.5`**
 
 <br>
-
-# [Live Web Demo](https://firestore-search-pub.web.app/)
-![Live Demo Web Build Status](https://img.shields.io/github/workflow/status/asadamatic/firestore_search/pub_publish?logo=github&style=for-the-badge&label=Web%20Build)
-<p>
-  <img width="216px" alt="Activated Search App BAr" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/searchbar.gif"/>
-
-  <img width="216px" alt="Searching for Users in Firestore Collection" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/usersearch.gif"/>
-</p>
-
-## Update
-
-### Separate widgets for `Search` and `Results`
-<br>
-
-
-<img width="216" alt="Separated widgets for firestore search" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/separated_search.gif?raw=true" />
-
-[![Pub Version](https://img.shields.io/pub/v/firestore_search?logo=flutter&style=for-the-badge)](https://pub.dev/packages/firestore_search)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asadamatic/firestore_search/pub_publish?logo=github&style=for-the-badge)
-[![Github Stars](https://img.shields.io/github/stars/asadamatic/firestore_search?logo=github&style=for-the-badge)](https://github.com/asadamatic/firestore_search)
-[![GitHub](https://img.shields.io/github/license/asadamatic/firestore_search?logo=open+source+initiative&style=for-the-badge)](https://github.com/asadamatic/firestore_search/blob/master/LICENSE)
-<!-- [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-FC60A8?logo=awesome-lists&style=for-the-badge)](https://github.com/Solido/awesome-flutter#widgets) -->
 
 ### Saves You from following implementations
 
@@ -39,85 +14,14 @@ This package helps developers in implementation of search on Cloud FireStore. Th
 * **Search Body** - A body that shoes up when user starts typing in the Search AppBar
 * **Cloud FireStore Queries** - Takes user's input and queries the requested CloudFirestore collection
 
+* **This package is an upgraded copy of the** - firestore_search
+* **Thanks to** - Asad Hameed
+
 
 ## Simple Usage
 To use this plugin, add `firestore_search` as a
 [dependency in your pubspec.yaml file](https://pub.dev/packages/firestore_search/install).
 
-
-
-## Major Update 0.1.7
-
-Separated widgets for search and results.
-
-Use `FirestoreSearchBar` to display a search field and provide a unique `tag` that will be passed to the respective `FirestoreSearchResults.builder` to display results from the requested queries.
-
-*FirestoreSearchBar*
-
-```dart
-FirestoreSearchBar(
-                tag: 'example',
-              )
-```
-
-*FirestoreSearchResults.builder*
-
-```dart
-FirestoreSearchResults.builder(
-              tag: 'example',
-              firestoreCollectionName: 'packages',
-              searchBy: 'tool',
-              initialBody: const Center(child: Text('Initial body'),),
-              dataListFromSnapshot: DataModel().dataListFromSnapshot,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final List<DataModel>? dataList = snapshot.data;
-                  if (dataList!.isEmpty) {
-                    return const Center(
-                      child: Text('No Results Returned'),
-                    );
-                  }
-                  return ListView.builder(
-                      itemCount: dataList.length,
-                      itemBuilder: (context, index) {
-                        final DataModel data = dataList[index];
-
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                '${data.name}',
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 8.0, left: 8.0, right: 8.0),
-                              child: Text('${data.developer}',
-                                  style: Theme.of(context).textTheme.bodyText1),
-                            )
-                          ],
-                        );
-                      });
-                }
-
-                if (snapshot.connectionState == ConnectionState.done) {
-                  if (!snapshot.hasData) {
-                    return const Center(
-                      child: Text('No Results Returned'),
-                    );
-                  }
-                }
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            )
-```
 
 ## Implementation:
 
@@ -126,23 +30,23 @@ FirestoreSearchResults.builder(
 * Create a data model, for the data you want retrieve from Cloud FireStore _(Your data model class must contain a function to convert QuerySnapshot from Cloud Firestore to a list of objects of your data model)_
 
 ```dart
-class DataModel {
+class Book {
   final String? name;
   final String? developer;
   final String? framework;
   final String? tool;
 
-  DataModel({this.name, this.developer, this.framework, this.tool});
+  Book({this.name, this.developer, this.framework, this.tool});
 
-  //Create a method to convert QuerySnapshot from Cloud Firestore to a list of objects of this DataModel
+  //Create a method to convert QuerySnapshot from Cloud Firestore to a list of objects of this Book
   //This function in essential to the working of FirestoreSearchScaffold
 
-  List<DataModel> dataListFromSnapshot(QuerySnapshot querySnapshot) {
+  List<Book> dataListFromSnapshot(QuerySnapshot querySnapshot) {
     return querySnapshot.docs.map((snapshot) {
       final Map<String, dynamic> dataMap =
           snapshot.data() as Map<String, dynamic>;
 
-      return DataModel(
+      return Book(
           name: dataMap['name'],
           developer: dataMap['developer'],
           framework: dataMap['framework'],
@@ -155,14 +59,21 @@ class DataModel {
 * Use class `FirestoreSearchScaffold` and provide the required parameters
 
 ```dart
-FirestoreSearchScaffold(
-      firestoreCollectionName: 'packages',
-      searchBy: 'tool',
+  Expanded(
+    child: FirestoreSearchScaffold(
+      textCapitalization: TextCapitalization.characters,
+      // keyboardType: TextInputType.text,
+      backButtonColor: Colors.blue,
+      firestoreCollectionName: 'books',
+      searchBy: 'title',
       scaffoldBody: Center(),
-      dataListFromSnapshot: DataModel().dataListFromSnapshot,
+      dataListFromSnapshot: Book().dataListFromSnapshot,
+
       builder: (context, snapshot) {
+        print(snapshot.error);
+
         if (snapshot.hasData) {
-          final List<DataModel>? dataList = snapshot.data;
+          final List<Book>? dataList = snapshot.data;
           if (dataList!.isEmpty) {
             return const Center(
               child: Text('No Results Returned'),
@@ -171,27 +82,33 @@ FirestoreSearchScaffold(
           return ListView.builder(
               itemCount: dataList.length,
               itemBuilder: (context, index) {
-                final DataModel data = dataList[index];
+                final Book data = dataList[index];
 
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '${data.name}',
-                        style: Theme.of(context).textTheme.headline6,
+                return InkWell(
+                  onTap: (){
+                    print('searched id ${data.id}');
+                    Navigator.pop(context, '${data.id}');
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          data.title,
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          bottom: 8.0, left: 8.0, right: 8.0),
-                      child: Text('${data.developer}',
-                          style: Theme.of(context).textTheme.bodyText1),
-                    )
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 8.0, left: 8.0, right: 8.0),
+                        child: Text(data.author,
+                            style: Theme.of(context).textTheme.bodyText1),
+                      )
+                    ],
+                  ),
                 );
               });
         }
@@ -207,34 +124,9 @@ FirestoreSearchScaffold(
           child: CircularProgressIndicator(),
         );
       },
-    )
+    ),
+  ),
 ```
 
                                                                                        
 ## <div align="center">You are good to go 💯</div>
-
----
-
-
-
-
-
-In order to add the `FirestoreSearchScaffold` in your app, there are several attributes that are important and neglecting them  or treating them roughly might throw errors:
-
-| Attribute | Type  | Default | Required | Description |
-|-----------|-------|---------|-------------|----------|
-| `scaffoldBody` | `Widget` | `Widget` | `No` | This widget will appear in the body of Scaffold. |
-| `appBarBottom` | `PreferredSizeWidget` | `null`  | `No` | This widget will appear at the bottom of Search AppBar. |
-| `firestoreCollectionName` | `String` | `` | `Yes` | Determines the Cloud Firestore collection You want to search in. |
-| `searchBy` | `String` | `` | `Yes` | Key for the firestore_collection value you want to search by. |
-| `dataListFromSnapshot` | `List Function(QuerySnapshot)` | `null` | `Yes` | This function converts QuerySnapshot to A List of required data. |
-| `builder` | `Widget Function(BuildContext, AsyncSnapshot)` | `null` | `No` | This is the builder function of StreamBuilder used by this widget to show search results. |
-| `limitOfRetrievedData` | `int` | `10` | `No` | Determines the number of documents returned by the search query. |
-
-## CREDITS
-### Contributors
-<a href="https://github.com/asadamatic/firestore_search/graphs/contributors">
-  <img src="https://contributors-img.firebaseapp.com/image?repo=asadamatic/firestore_search" />
-</a>
-
-Made with [contributors-img](https://contributors-img.firebaseapp.com).

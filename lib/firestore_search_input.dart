@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_search/src/mvc/controllers/firestore_search_controller.dart';
-import 'package:firestore_search/src/mvc/services/firestore_service.dart';
-import 'package:firestore_search/src/mvc/widgets/search_field.dart';
+import 'package:firestore_search_input/src/mvc/controllers/firestore_search_controller.dart';
+import 'package:firestore_search_input/src/mvc/services/firestore_service.dart';
+import 'package:firestore_search_input/src/mvc/widgets/search_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-export 'package:firestore_search/src/mvc/controllers/firestore_search_controller.dart'
+export 'package:firestore_search_input/src/mvc/controllers/firestore_search_controller.dart'
     hide FirestoreSearchController;
-export 'package:firestore_search/src/mvc/views/search_bar.dart'
+export 'package:firestore_search_input/src/mvc/views/search_bar.dart'
     show FirestoreSearchBar;
-export 'package:firestore_search/src/mvc/views/search_results.dart'
+export 'package:firestore_search_input/src/mvc/views/search_results.dart'
     show FirestoreSearchResults;
 
 class FirestoreSearchScaffold extends StatefulWidget {
