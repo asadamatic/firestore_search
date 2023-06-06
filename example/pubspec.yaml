@@ -29,8 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^1.7.0
-  cloud_firestore: ^3.1.4
+  firebase_core: ^2.13.1
+  cloud_firestore: ^4.7.0
   firestore_search:
     path: ../
 

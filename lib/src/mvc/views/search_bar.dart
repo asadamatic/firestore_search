@@ -1,4 +1,3 @@
-import 'package:firestore_search/firestore_search.dart';
 import 'package:firestore_search/src/mvc/controllers/firestore_search_controller.dart';
 import 'package:firestore_search/src/mvc/widgets/search_field.dart';
 import 'package:flutter/material.dart';

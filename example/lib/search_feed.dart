@@ -35,7 +35,7 @@ class _SearchFeedState extends State<SearchFeed> {
             child: FirestoreSearchResults.builder(
               tag: 'test',
               firestoreCollectionName: 'packages',
-              searchBy: 'tool',
+              searchBy: 'name',
               initialBody: const Center(child: Text('Initial body'),),
               dataListFromSnapshot: DataModel().dataListFromSnapshot,
               builder: (context, snapshot) {
@@ -60,14 +60,14 @@ class _SearchFeedState extends State<SearchFeed> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 '${data.name}',
-                                style: Theme.of(context).textTheme.headline6,
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
                                   bottom: 8.0, left: 8.0, right: 8.0),
                               child: Text('${data.developer}',
-                                  style: Theme.of(context).textTheme.bodyText1),
+                                  style: Theme.of(context).textTheme.bodyLarge),
                             )
                           ],
                         );
@@ -112,14 +112,14 @@ class _SearchFeedState extends State<SearchFeed> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         '${data.name}',
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
                           bottom: 8.0, left: 8.0, right: 8.0),
                       child: Text('${data.developer}',
-                          style: Theme.of(context).textTheme.bodyText1),
+                          style: Theme.of(context).textTheme.bodyLarge),
                     )
                   ],
                 );

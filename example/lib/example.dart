@@ -1,5 +1,4 @@
 import 'package:example/search_feed.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -8,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Firestore Search Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

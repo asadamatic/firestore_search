@@ -1,6 +1,6 @@
 name: firestore_search
 description: This package helps developers to implement cloud_firestore search in their apps.
-version: 0.1.9
+version: 0.2.0
 homepage: https://github.com/asadamatic/firestore_search
 
 environment:
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cloud_firestore: ^3.1.4
-  get: ^4.3.8
+  cloud_firestore: ^4.7.0
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

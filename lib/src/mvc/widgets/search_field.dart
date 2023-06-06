@@ -12,7 +12,7 @@ class SearchFiled extends StatelessWidget {
   final Function(String)? onSearchQueryChanged;
   final Function(String)? onSearchQueryUpdated;
   final Function(String)? onEditingComplete;
-  TextEditingController? searchQueryController;
+  final TextEditingController? searchQueryController;
   SearchFiled(
       {this.showSearchIcon = false,
       this.isSearching = false,

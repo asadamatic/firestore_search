@@ -1,5 +1,5 @@
 {
   "projects": {
-    "default": "firestore-search-pub"
+    "default": "pub-firestore-search"
   }
 }
