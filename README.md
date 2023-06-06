@@ -2,22 +2,26 @@
 
 This package helps developers in implementation of search on Cloud FireStore. This package comes with the implementation of widgets essential  for  performing search on a database.
 
-# [Live Web Demo](https://asadamatic-pub-packages.web.app)
+# [Live Web Demo](https://pub-firestore-search.web.app/)
 
 
 ### Make sure to use `firestore_core` in your project
-### **Depends on `cloud_firestore: ^3.1.4`**
-### **Depends on `get: ^4.3.8`**
+### **Depends on `cloud_firestore: ^4.7.0`**
+### **Depends on `get: ^4.6.5`**
 
 <br>
 
-# [Live Web Demo](https://firestore-search-pub.web.app/)
+#[Live Web Demo](https://pub-firestore-search.web.app/)
 ![Live Demo Web Build Status](https://img.shields.io/github/workflow/status/asadamatic/firestore_search/pub_publish?logo=github&style=for-the-badge&label=Web%20Build)
-<p>
-  <img width="216px" alt="Activated Search App BAr" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/searchbar.gif"/>
 
-  <img width="216px" alt="Searching for Users in Firestore Collection" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/usersearch.gif"/>
-</p>
+[//]: # (<p>)
+
+[//]: # (  <img width="216px" alt="Activated Search App BAr" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/searchbar.gif"/>)
+
+[//]: # ()
+[//]: # (  <img width="216px" alt="Searching for Users in Firestore Collection" src="https://raw.githubusercontent.com/asadamatic/firestore_search/master/assets/usersearch.gif"/>)
+
+[//]: # (</p>)
 
 ## Update
 
