@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FirestoreSearchResults extends StatelessWidget {
+  final String? docId;
+  final String? subCollectionName;
+
   /// Color for background of results body
   ///
   final Color? resultsBodyBackgroundColor;
@@ -47,13 +50,14 @@ class FirestoreSearchResults extends StatelessWidget {
   /// This widget can be used anywhere is the widget tree, and the results will correspond the [searchQuery] of [FirestoreSearchBar] linked by [tag] parameter
   ///
   const FirestoreSearchResults.builder(
-      {
-        required this.tag,
+      {required this.tag,
       required this.firestoreCollectionName,
       required this.searchBy,
       this.limitOfRetrievedData = 10,
       required this.dataListFromSnapshot,
       this.builder,
+      this.docId,
+      this.subCollectionName,
       this.initialBody,
       this.resultsBodyBackgroundColor = Colors.white,
       Key? key})
@@ -73,6 +77,8 @@ class FirestoreSearchResults extends StatelessWidget {
                       color: resultsBodyBackgroundColor,
                       child: StreamBuilder<List>(
                           stream: FirestoreService(
+                                  docId: docId,
+                                  subCollectionName: subCollectionName,
                                   collectionName: firestoreCollectionName,
                                   searchBy: searchBy ?? '',
                                   dataListFromSnapshot: dataListFromSnapshot,
