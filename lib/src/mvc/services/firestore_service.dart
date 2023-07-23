@@ -7,16 +7,25 @@ class FirestoreService<T> {
   final String? searchBy;
   final List Function(QuerySnapshot)? dataListFromSnapshot;
   final int? limitOfRetrievedData;
+  final String? docId;
+  final String? subCollectionName;
 
   FirestoreService(
       {this.collectionName,
       this.searchBy,
       this.dataListFromSnapshot,
+      this.docId,
+      this.subCollectionName,
       this.limitOfRetrievedData});
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   Stream<List> searchData(String query) {
-    final collectionReference = firebaseFirestore.collection(collectionName!);
+    final collectionReference = (docId != null && subCollectionName != null)
+        ? firebaseFirestore
+            .collection(collectionName!)
+            .doc(docId)
+            .collection(subCollectionName!)
+        : firebaseFirestore.collection(collectionName!);
     return query.isEmpty
         ? Stream.empty()
         : collectionReference
